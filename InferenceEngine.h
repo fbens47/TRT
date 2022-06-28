@@ -42,6 +42,26 @@ class Logger: public nvinfer1::ILogger {
     }
 };
 
+class NewEngine {
+public:
+    NewEngine();
+    ~NewEngine();
+    void buildNetwork();
+    void doInference(cv::Mat &inputFrame);
+private:
+    nvinfer1::ICudaEngine *m_engine;
+    nvinfer1::IBuilder *m_builder;
+    nvinfer1::IExecutionContext *m_context;
+    cudaStream_t *m_stream;
+    void* m_buffers[5];
+    // ce sont les données d'entrées à envoyer vers le buffer device
+    float *data;
+    // ce sont les données de sortie qui reçoivent les données du buffer device
+    float *prob;
+    size_t outputSize;
+    size_t inputSize;
+    std::string m_pathONNX = "C:/Users/Flavi/data/deep_net/best_20220627.bin";
+};
 
 class InferenceEngine {
 public:
@@ -71,7 +91,7 @@ private:
     size_t outputSize519;  // 38400
     size_t outputSize561;  // 806400
     size_t inputSize;
-    std::string m_pathONNX = "/home/feral/CLionProjects/TRT/deep_net/last.onnx";
+    std::string m_pathONNX = "C:/Users/Flavi/data/deep_net/last_fp16.bin";
 };
 
 

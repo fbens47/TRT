@@ -19,7 +19,18 @@
 #
 set(_TensorRT_SEARCHES)
 
-# set(TensorRT_ROOT "C:/repos/TensorRT/include")
+if (MSVC)
+    # Ordi manip
+    # set(TensorRT_ROOT "C:/repos/TensorRT/TensorRT-8.0.1.6/include")
+    # set(TensorRT_LIBRARY C:/repos/TensorRT/TensorRT-8.0.1.6/lib/nvinfer.lib)
+    # set(TensorRT_parsers_LIBRARY "C:/repos/TensorRT/TensorRT-8.0.1.6/lib/nvparsers.lib")
+    # set(TensorRT_onnx_parser_LIBRARY "C:/repos/TensorRT/TensorRT-8.0.1.6/lib/nvonnxparser.lib")
+    # TODO: ordi perso
+    set(TensorRT_ROOT "C:/repos/TensorRT/include")
+    set(TensorRT_LIBRARY C:/repos/TensorRT/lib/nvinfer.lib)
+    set(TensorRT_parsers_LIBRARY "C:/repos/TensorRT/lib/nvparsers.lib")
+    set(TensorRT_onnx_parser_LIBRARY "C:/repos/TensorRT/lib/nvonnxparser.lib")
+endif()
 
 if(TensorRT_ROOT)
   set(_TensorRT_SEARCH_ROOT PATHS ${TensorRT_ROOT} NO_DEFAULT_PATH)

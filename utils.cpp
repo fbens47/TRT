@@ -3,6 +3,7 @@
 //
 
 #include <cuda_runtime_api.h>
+#include <thread>
 #include "utils.h"
 
 /**
@@ -30,7 +31,7 @@ cv::Mat preprocess_img(cv::Mat& img, int input_w, int input_h) {
     auto start = std::chrono::system_clock::now();
     cv::Mat re(h, w, CV_8UC3);
     auto end = std::chrono::system_clock::now();
-    std::cout << "MatCPU: " <<std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() / 1000.f << "ms" << std::endl;
+    // std::cout << "MatCPU: " <<std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() / 1000.f << "ms" << std::endl;
 
     cv::resize(img, re, re.size(), 0, 0, cv::INTER_LINEAR);
     cv::Mat out(input_h, input_w, CV_8UC3, cv::Scalar(128, 128, 128));

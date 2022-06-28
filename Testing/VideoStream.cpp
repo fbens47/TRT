@@ -24,11 +24,8 @@ VideoStream::~VideoStream() {
 
 void VideoStream::writeFrame(const cv::Mat &frame) {
     if (!m_writer->isOpened()) {
-        int fourcc = m_cap->get(cv::CAP_PROP_FOURCC);
+        int fourcc = (int) m_cap->get(cv::CAP_PROP_FOURCC);
         double FPS = m_cap->get(cv::CAP_PROP_FPS);
-        std::cout << "FPS = " << FPS;
-        int height = m_cap->get(cv::CAP_PROP_FRAME_HEIGHT);
-        int width = m_cap->get(cv::CAP_PROP_FRAME_WIDTH);
         m_writer->open(m_pathVideoToSave, fourcc, FPS, frame.size(), true);
     }
     m_writer->write(frame);

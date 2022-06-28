@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.19)
 project(TRT)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CUDA_INCLUDE_DIR "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.3/include")
+set(OpenCV_DIR "C:/repos/opencv/build")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}")
 # find_package(MLPACK REQUIRED)
@@ -30,7 +32,7 @@ if (OpenCV_FOUND)
     target_link_libraries(${PROJECT_NAME} PUBLIC ${OpenCV_LIBS})
 endif ()
 
-find_package(CUDA 11.7 REQUIRED)
+find_package(CUDA 11 REQUIRED)
 if (CUDA_FOUND)
     message("- CUDA     FOUND = OK")
     target_include_directories(${PROJECT_NAME} PUBLIC ${CUDA_INCLUDE_DIRS})
